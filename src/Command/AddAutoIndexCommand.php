@@ -28,6 +28,7 @@ namespace PrestaShop\AutoIndex\Command;
 
 use PhpParser\ParserFactory;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -51,6 +52,11 @@ class AddAutoIndexCommand extends Command
         $this
         ->setName('prestashop:add:index')
         ->setDescription('Automatically add an "index.php" in all your directories or your zip file recursively')
+        ->addArgument(
+            'real_path',
+            InputArgument::OPTIONAL,
+            'The real path of your module'
+        )
         ->addOption(
             'exclude',
             null,
@@ -67,8 +73,14 @@ class AddAutoIndexCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $dir = getcwd();
-        $source = $dir . '/assets/index.php';
+        $realPath = $input->getArgument('real_path');
+        if ($realPath) {
+            $dir = $realPath;
+        } else {
+            $dir = getcwd();
+        }
+        $source = __DIR__ . '/../../assets/index.php';
+
         if ($dir === false) {
             throw new \Exception('Could not get current directory. Check your permissions.');
         }
@@ -99,5 +111,4 @@ class AddAutoIndexCommand extends Command
         $progress->finish();
         $output->writeln('');
     }
-
 }
