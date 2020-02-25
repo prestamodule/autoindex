@@ -39,9 +39,7 @@ foreach ($autoloadFiles as $autoloadFile) {
 use PrestaShop\AutoIndex\Command\AddAutoIndexCommand;
 use Symfony\Component\Console\Application;
 
-
 $application = new Application('autoindex', '1.1.0');
-
 $command = new AddAutoIndexCommand();
 
 $application->add($command);

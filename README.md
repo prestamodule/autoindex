@@ -14,7 +14,7 @@ Use your own "index.php" file
 
 ## Usage
 
-- php-cli: `php bin/autoindex prestashop:add:in (/your/module/path)`
+- php-cli: `php prestashop:add:in (/your/module/path)`
 
 
 ## Version

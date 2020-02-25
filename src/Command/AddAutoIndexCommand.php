@@ -34,7 +34,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
 
 class AddAutoIndexCommand extends Command
 {
@@ -90,18 +89,15 @@ class AddAutoIndexCommand extends Command
             ->directories()
             ->in($dir)
             ->exclude($this->filters);
-        $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
 
         $output->writeln('Updating directories in ' . strtoupper($dir) . ' folder ...');
         $progress = new ProgressBar($output, count($finder));
         $progress->start();
-        $progress->setRedrawFrequency(20);
 
         foreach ($finder as $file) {
             $newfile = $file->getRealPath() . '/index.php';
             if (!file_exists($newfile)) {
                 if (!copy($source, $newfile)) {
-                    echo "La copie $file du fichier a échoué...\n";
                     $output->writeln('add file fail in ' . strtoupper($newfile));
                 }
             }
