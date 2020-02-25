@@ -27,7 +27,6 @@
 namespace PrestaShop\AutoIndex\Command;
 
 use PhpParser\ParserFactory;
-//use PrestaShop\HeaderStamp\LicenseHeader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
@@ -69,6 +68,7 @@ class AddAutoIndexCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $dir = getcwd();
+        $source = $dir . '/assets/index.php';
         if ($dir === false) {
             throw new \Exception('Could not get current directory. Check your permissions.');
         }
@@ -86,18 +86,13 @@ class AddAutoIndexCommand extends Command
         $progress->setRedrawFrequency(20);
 
         foreach ($finder as $file) {
-            var_dump($file->getFilename());
-            // $indexFind = new Finder();
-            // $indexFind
-            // ->files()
-            // ->name('index.php')
-            // ->in($file->getFilename());
-
-            // foreach ($indexFind as $index) {
-            //     $contents = $index->getContents();
-            //     var_dump($contents);
-            // }
-
+            $newfile = $file->getRealPath() . '/index.php';
+            if (!file_exists($newfile)) {
+                if (!copy($source, $newfile)) {
+                    echo "La copie $file du fichier a échoué...\n";
+                    $output->writeln('add file fail in ' . strtoupper($newfile));
+                }
+            }
             $progress->advance();
         }
 
