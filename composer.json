@@ -1,6 +1,6 @@
 {
     "name": "presta-shop-corp/autoindex",
-    "description": "Automatically add an 'index.php' in all the current  or specified directories and all sub-directories.",
+    "description": "Automatically add an 'index.php' in all the current or specified directories and all sub-directories.",
     "homepage": "https://github.com/PrestaShopCorp/autoindex",
     "license": "AFL-3.0",
     "authors": [

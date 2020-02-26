@@ -26,7 +26,6 @@
 
 namespace PrestaShop\AutoIndex\Command;
 
-use PhpParser\ParserFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -73,11 +72,12 @@ class AddAutoIndexCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $realPath = $input->getArgument('real_path');
-        if ($realPath) {
+        if ($realPath !== null) {
             $dir = $realPath;
         } else {
             $dir = getcwd();
         }
+
         $source = __DIR__ . '/../../assets/index.php';
 
         if ($dir === false) {
