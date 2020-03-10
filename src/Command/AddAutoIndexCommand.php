@@ -90,7 +90,7 @@ class AddAutoIndexCommand extends Command
             ->in($dir)
             ->exclude($this->filters);
 
-        $output->writeln('Updating directories in ' . strtoupper($dir) . ' folder ...');
+        $output->writeln('Updating directories in ' . $dir . ' folder ...');
         $progress = new ProgressBar($output, count($finder));
         $progress->start();
 
@@ -98,7 +98,7 @@ class AddAutoIndexCommand extends Command
             $newfile = $file->getRealPath() . '/index.php';
             if (!file_exists($newfile)) {
                 if (!copy($source, $newfile)) {
-                    $output->writeln('add file fail in ' . strtoupper($newfile));
+                    $output->writeln('Cannot add index file in ' . strtoupper($newfile));
                 }
             }
             $progress->advance();
