@@ -3,21 +3,19 @@
     "description": "Automatically add an 'index.php' in all the current or specified directories and all sub-directories.",
     "homepage": "https://github.com/PrestaShopCorp/autoindex",
     "license": "AFL-3.0",
-    "authors": [
-        {
-            "name": "PrestaShop SA",
-            "email": "contact@prestashop.com"
-        }
-    ],
+    "authors": [{
+        "name": "PrestaShop SA",
+        "email": "contact@prestashop.com"
+    }],
     "require": {
-        "php": "^8.0 || ^7.2",
-        "symfony/console": "^3.4 || ~4.0 || ~5.0 || ~6.0",
-        "symfony/finder": "^3.4 || ~4.0 || ~5.0 || ~6.0",
+        "php": "^8.1 || ^8.0 || ^7.2",
+        "symfony/console": "^3.4 || ~4.0 || ~5.0 || ~6.0 || ~7.0",
+        "symfony/finder": "^3.4 || ~4.0 || ~5.0 || ~6.0 || ~7.0",
         "nikic/php-parser": "^4.10"
     },
     "require-dev": {
-      "prestashop/php-dev-tools": "1.*",
-      "phpstan/phpstan": "^0.12.83"
+        "prestashop/php-dev-tools": "1.*",
+        "phpstan/phpstan": "^0.12.83"
     },
     "config": {
         "preferred-install": "dist",
